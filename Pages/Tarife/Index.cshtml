@@ -1,0 +1,37 @@
+@page
+@model OtoparkApp.Pages.Tarife.IndexModel
+@{
+    ViewData["Title"] = "Tarifeler";
+}
+
+<h2 class="mb-3">Tarifeler</h2>
+<a class="btn btn-primary mb-3" asp-page="/Tarife/Create">Yeni Tarife Ekle</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Araç Tipi</th>
+            <th>0-1 Saat (₺)</th>
+            <th>1-3 Saat/saat (₺)</th>
+            <th>3+ Saat/saat (₺)</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tarife in Model.tarifeList)
+        {
+            <tr>
+                <td>@tarife.Id</td>
+                <td>@tarife.AracTipi</td>
+                <td>@tarife.IlkSaatUcret.ToString("0.00") ₺</td>
+                <td>@tarife.OrtaSaatUcret.ToString("0.00") ₺</td>
+                <td>@tarife.UzunSaatUcret.ToString("0.00") ₺</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-primary btn-sm" asp-page="/Tarife/Edit" asp-route-id="@tarife.Id">Düzenle</a>
+                    <a class="btn btn-danger btn-sm" asp-page="/Tarife/Delete" asp-route-id="@tarife.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

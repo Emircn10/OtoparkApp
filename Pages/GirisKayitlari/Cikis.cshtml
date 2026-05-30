@@ -1,0 +1,42 @@
+@page "{id:int}"
+@model OtoparkApp.Pages.GirisKayitlari.CikisModel
+@{
+    ViewData["Title"] = "Araç Çıkışı";
+}
+
+<h2 class="mb-3">Araç Çıkışı</h2>
+<a class="btn btn-secondary mb-3" asp-page="/GirisKayitlari/Index">← Geri</a>
+
+@if (Model.Kayit != null)
+{
+    <div class="card mb-4" style="max-width:500px">
+        <div class="card-header bg-dark text-white">Park Bilgisi</div>
+        <div class="card-body">
+            <p><strong>Plaka:</strong> @Model.Kayit.Arac?.Plaka</p>
+            <p><strong>Araç Tipi:</strong> @Model.Kayit.Arac?.AracTipi</p>
+            <p><strong>Giriş:</strong> @Model.Kayit.GirisTarihi.ToString("dd.MM.yyyy HH:mm")</p>
+            <p><strong>Şu Anki Süre:</strong> @Model.ToplamDakika dakika</p>
+            <p><strong>Hesaplanan Ücret:</strong> @Model.HesaplananUcret.ToString("0.00") ₺</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <form method="post">
+                <input type="hidden" asp-for="CikisDto.KayitId" />
+
+                <div class="mb-3">
+                    <label class="form-label">Alınan Ücret (₺)</label>
+                    <input asp-for="CikisDto.OdenenUcret" class="form-control" type="number" step="any" />
+                    <span asp-validation-for="CikisDto.OdenenUcret" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-danger">Çıkışı Kaydet</button>
+            </form>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

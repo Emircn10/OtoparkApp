@@ -1,0 +1,36 @@
+@page
+@model OtoparkApp.Pages.GirisKayitlari.CreateModel
+@{
+    ViewData["Title"] = "Araç Girişi";
+}
+
+<h2 class="mb-3">Araç Girişi</h2>
+<a class="btn btn-secondary mb-3" asp-page="/GirisKayitlari/Index">← Geri</a>
+
+<div class="row">
+    <div class="col-md-5">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label class="form-label">Araç Seçin</label>
+                <select asp-for="GirisKayitDto.AracId" asp-items="Model.AracListesi" class="form-select">
+                    <option value="">-- Araç Seçin --</option>
+                </select>
+                <span asp-validation-for="GirisKayitDto.AracId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Giriş Zamanı</label>
+                <input class="form-control" value="@DateTime.Now.ToString("dd.MM.yyyy HH:mm")" readonly />
+                <small class="text-muted">Giriş zamanı otomatik kaydedilir.</small>
+            </div>
+
+            <button type="submit" class="btn btn-success">Giriş Kaydet</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

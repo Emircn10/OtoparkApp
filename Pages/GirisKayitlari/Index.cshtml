@@ -1,0 +1,54 @@
+@page
+@model OtoparkApp.Pages.GirisKayitlari.IndexModel
+@{
+    ViewData["Title"] = "Park Kayıtları";
+}
+
+<h2 class="mb-3">Park Kayıtları</h2>
+<a class="btn btn-success mb-3" asp-page="/GirisKayitlari/Create">+ Araç Girişi</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Plaka</th>
+            <th>Araç Tipi</th>
+            <th>Giriş</th>
+            <th>Çıkış</th>
+            <th>Süre (dk)</th>
+            <th>Ücret</th>
+            <th>Durum</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kayit in Model.kayitList)
+        {
+            <tr class="@(kayit.CikisTarihi == null ? "table-warning" : "")">
+                <td>@kayit.Id</td>
+                <td><strong>@kayit.Arac?.Plaka</strong></td>
+                <td>@kayit.Arac?.AracTipi</td>
+                <td>@kayit.GirisTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@(kayit.CikisTarihi?.ToString("dd.MM.yyyy HH:mm") ?? "Parkta")</td>
+                <td>@(kayit.ToplamSureDakika?.ToString() ?? "-")</td>
+                <td>@(kayit.OdenenUcret?.ToString("0.00 ₺") ?? "-")</td>
+                <td>
+                    @if (kayit.CikisTarihi == null)
+                    {
+                        <span class="badge bg-warning text-dark">Aktif</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">@kayit.OdemeDurumu</span>
+                    }
+                </td>
+                <td>
+                    @if (kayit.CikisTarihi == null)
+                    {
+                        <a class="btn btn-danger btn-sm" asp-page="/GirisKayitlari/Cikis" asp-route-id="@kayit.Id">Çıkış Yap</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

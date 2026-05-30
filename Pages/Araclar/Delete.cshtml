@@ -1,0 +1,27 @@
+@page "{id:int}"
+@model OtoparkApp.Pages.Araclar.DeleteModel
+@{
+    ViewData["Title"] = "Araç Sil";
+}
+
+<h2 class="mb-3">Araç Sil</h2>
+
+@if (Model.Arac != null)
+{
+    <div class="alert alert-danger">
+        <strong>@Model.Arac.Plaka</strong> plakalı aracı silmek istediğinize emin misiniz?
+    </div>
+
+    <div class="card mb-3" style="max-width:400px">
+        <div class="card-body">
+            <p><strong>Plaka:</strong> @Model.Arac.Plaka</p>
+            <p><strong>Araç Tipi:</strong> @Model.Arac.AracTipi</p>
+            <p><strong>Sahibi:</strong> @Model.Arac.SahibiAdi</p>
+        </div>
+    </div>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a class="btn btn-secondary" asp-page="/Araclar/Index">İptal</a>
+    </form>
+}

@@ -1,0 +1,52 @@
+@page "{id:int}"
+@model OtoparkApp.Pages.Tarife.EditModel
+@{
+    ViewData["Title"] = "Tarife Düzenle";
+}
+
+<h2 class="mb-3">Tarife Düzenle</h2>
+<a class="btn btn-secondary mb-3" asp-page="/Tarife/Index">← Geri</a>
+
+<div class="row">
+    <div class="col-md-5">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label class="form-label">Araç Tipi</label>
+                <select asp-for="TarifeDto.AracTipi" class="form-select">
+                    <option value="">-- Seçin --</option>
+                    <option value="Otomobil">Otomobil</option>
+                    <option value="Motosiklet">Motosiklet</option>
+                    <option value="Minibüs">Minibüs</option>
+                    <option value="Kamyonet">Kamyonet</option>
+                </select>
+                <span asp-validation-for="TarifeDto.AracTipi" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">0-1 Saat Ücreti (₺)</label>
+                <input asp-for="TarifeDto.IlkSaatUcret" class="form-control" type="number" step="any" />
+                <span asp-validation-for="TarifeDto.IlkSaatUcret" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">1-3 Saat / Saat Ücreti (₺)</label>
+                <input asp-for="TarifeDto.OrtaSaatUcret" class="form-control" type="number" step="any" />
+                <span asp-validation-for="TarifeDto.OrtaSaatUcret" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3+ Saat / Saat Ücreti (₺)</label>
+                <input asp-for="TarifeDto.UzunSaatUcret" class="form-control" type="number" step="any" />
+                <span asp-validation-for="TarifeDto.UzunSaatUcret" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

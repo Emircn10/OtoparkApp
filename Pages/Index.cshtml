@@ -1,0 +1,43 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">🅿 Otopark Yönetim Sistemi</h1>
+    <p class="lead text-muted">Araç girişlerini, çıkışlarını ve tarifeleri yönetin.</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>🚗</h2>
+                <h5 class="card-title">Araçlar</h5>
+                <p class="card-text text-muted">Araç ekle, düzenle veya sil.</p>
+                <a asp-page="/Araclar/Index" class="btn btn-primary">Araçlara Git</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>📋</h2>
+                <h5 class="card-title">Park Kayıtları</h5>
+                <p class="card-text text-muted">Araç giriş ve çıkışlarını yönet.</p>
+                <a asp-page="/GirisKayitlari/Index" class="btn btn-success">Kayıtlara Git</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>💰</h2>
+                <h5 class="card-title">Tarifeler</h5>
+                <p class="card-text text-muted">Araç tiplerine göre ücret tarifleri.</p>
+                <a asp-page="/Tarife/Index" class="btn btn-warning">Tarifelere Git</a>
+            </div>
+        </div>
+    </div>
+</div>

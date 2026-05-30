@@ -1,0 +1,53 @@
+@page "{id:int}"
+@model OtoparkApp.Pages.Araclar.DetailsModel
+@{
+    ViewData["Title"] = "Araç Detayı";
+}
+
+<h2 class="mb-3">Araç Detayı</h2>
+<a class="btn btn-secondary mb-3" asp-page="/Araclar/Index">← Geri</a>
+
+@if (Model.Arac != null)
+{
+    <div class="card mb-4" style="max-width:500px">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Arac.Plaka</h5>
+            <p><strong>Araç Tipi:</strong> @Model.Arac.AracTipi</p>
+            <p><strong>Sahibi:</strong> @Model.Arac.SahibiAdi</p>
+            <p><strong>Telefon:</strong> @Model.Arac.SahibiTelefon</p>
+            <p><strong>Kayıt Tarihi:</strong> @Model.Arac.OlusturmaTarihi.ToString("dd.MM.yyyy HH:mm")</p>
+        </div>
+    </div>
+
+    <h5>Park Geçmişi</h5>
+    @if (Model.GirisKayitlari.Count == 0)
+    {
+        <p class="text-muted">Henüz park kaydı yok.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-sm">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Giriş</th>
+                    <th>Çıkış</th>
+                    <th>Süre (dk)</th>
+                    <th>Ücret</th>
+                    <th>Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var k in Model.GirisKayitlari)
+                {
+                    <tr>
+                        <td>@k.GirisTarihi.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@(k.CikisTarihi?.ToString("dd.MM.yyyy HH:mm") ?? "-")</td>
+                        <td>@(k.ToplamSureDakika?.ToString() ?? "-")</td>
+                        <td>@(k.OdenenUcret?.ToString("C2") ?? "-")</td>
+                        <td>@k.OdemeDurumu</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

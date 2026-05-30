@@ -1,0 +1,40 @@
+@page
+@model OtoparkApp.Pages.Araclar.IndexModel
+@{
+    ViewData["Title"] = "Araçlar";
+}
+
+<h2 class="mb-3">Araçlar</h2>
+<a class="btn btn-primary mb-3" asp-page="/Araclar/Create">Yeni Araç Ekle</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Plaka</th>
+            <th>Araç Tipi</th>
+            <th>Sahibi</th>
+            <th>Telefon</th>
+            <th>Kayıt Tarihi</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var arac in Model.aracList)
+        {
+            <tr>
+                <td>@arac.Id</td>
+                <td><strong>@arac.Plaka</strong></td>
+                <td>@arac.AracTipi</td>
+                <td>@arac.SahibiAdi</td>
+                <td>@arac.SahibiTelefon</td>
+                <td>@arac.OlusturmaTarihi.ToString("dd.MM.yyyy")</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-secondary btn-sm" asp-page="/Araclar/Details" asp-route-id="@arac.Id">Detay</a>
+                    <a class="btn btn-primary btn-sm" asp-page="/Araclar/Edit" asp-route-id="@arac.Id">Düzenle</a>
+                    <a class="btn btn-danger btn-sm" asp-page="/Araclar/Delete" asp-route-id="@arac.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

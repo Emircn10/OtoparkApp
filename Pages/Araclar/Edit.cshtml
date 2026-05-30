@@ -1,0 +1,52 @@
+@page "{id:int}"
+@model OtoparkApp.Pages.Araclar.EditModel
+@{
+    ViewData["Title"] = "Araç Düzenle";
+}
+
+<h2 class="mb-3">Araç Düzenle</h2>
+<a class="btn btn-secondary mb-3" asp-page="/Araclar/Index">← Geri</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label class="form-label">Plaka</label>
+                <input asp-for="AracDto.Plaka" class="form-control" />
+                <span asp-validation-for="AracDto.Plaka" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Araç Tipi</label>
+                <select asp-for="AracDto.AracTipi" class="form-select">
+                    <option value="">-- Seçin --</option>
+                    <option value="Otomobil">Otomobil</option>
+                    <option value="Motosiklet">Motosiklet</option>
+                    <option value="Minibüs">Minibüs</option>
+                    <option value="Kamyonet">Kamyonet</option>
+                </select>
+                <span asp-validation-for="AracDto.AracTipi" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Sahibi Adı</label>
+                <input asp-for="AracDto.SahibiAdi" class="form-control" />
+                <span asp-validation-for="AracDto.SahibiAdi" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Sahibi Telefon</label>
+                <input asp-for="AracDto.SahibiTelefon" class="form-control" />
+                <span asp-validation-for="AracDto.SahibiTelefon" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

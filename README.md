@@ -270,9 +270,6 @@ Ardından tarayıcınızda şu adresi açın: `https://localhost:5001`
 
 ---
 
-## 📄 Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır.
 
 ---
 

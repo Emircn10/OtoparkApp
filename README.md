@@ -268,10 +268,6 @@ Ardından tarayıcınızda şu adresi açın: `https://localhost:5001`
    ```
 5. **Pull Request** açın
 
----
-
-
----
 
 <p align="center">
   <b>Emircn10</b> tarafından geliştirilmiştir &nbsp;•&nbsp;
